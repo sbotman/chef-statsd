@@ -32,6 +32,7 @@ var (
 	gangliaAddress   = flag.String("ganglia", "localhost", "Ganglia gmond servers, comma separated")
 	gangliaPort      = flag.Int("ganglia-port", 8649, "Ganglia gmond service port")
 	gangliaSpoofHost = flag.String("ganglia-spoof-host", "", "Ganglia gmond spoof host string")
+	gangliaGroup     = flag.String("ganglia-group", "statsd", "Ganglia metric group name")
 	flushInterval    = flag.Int64("flush-interval", 10, "Flush interval")
 	percentThreshold = flag.Int("percent-threshold", 90, "Threshold percent")
 	debug            = flag.Bool("debug", false, "Debug mode")
@@ -107,7 +108,7 @@ func submit() {
 			m_units := "count"
 			m_type := uint32(gmetric.VALUE_UNSIGNED_INT)
 			m_slope := uint32(gmetric.SLOPE_BOTH)
-			m_grp := "statsd"
+			m_grp := *gangliaGroup
 			m_ival := uint32(*flushInterval * int64(2))
 
 			go gm.SendMetric(name, m_value, m_type, m_units, m_slope, m_ival, m_ival, m_grp)

@@ -17,6 +17,7 @@ Usage of statsd-go:
   -debug=false: Debug mode
   -flush-interval=10: Flush interval
   -ganglia="localhost": Ganglia gmond servers, comma separated
+  -ganglia-group="statsd": Ganglia metric group name
   -ganglia-port=8649: Ganglia gmond service port
   -ganglia-spoof-host="": Ganglia gmond spoof host string
   -graphite="": Graphite service address (example: 'localhost:2003')
